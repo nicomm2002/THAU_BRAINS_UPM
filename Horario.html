@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horario Semanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF3E7;
+    --ink:#2E3A34;
+    --morning:#E8A33D;
+    --midday:#C1652F;
+    --afternoon:#5C7A5E;
+    --evening:#4A5A78;
+    --card:#FFFFFF;
+    --line:#E4D6C0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Quicksand',sans-serif;
+    min-height:100vh;
+  }
+  header{
+    padding:48px 24px 24px;
+    text-align:center;
+  }
+  header h1{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  header p{
+    font-size:1.15rem;
+    color:#5A6259;
+    margin:0;
+  }
+
+  .day-arc{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:8px 16px 32px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .day-btn{
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:14px 20px;
+    border-radius:999px;
+    border:2px solid var(--line);
+    background:var(--card);
+    color:var(--ink);
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+    min-width:110px;
+  }
+  .day-btn:hover{transform:translateY(-2px);}
+  .day-btn.active{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+    box-shadow:0 8px 20px rgba(46,58,52,.25);
+  }
+  .day-btn:focus-visible{outline:3px solid var(--midday); outline-offset:2px;}
+
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 20px 80px;
+  }
+
+  .timeline{
+    position:relative;
+    padding-left:32px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:11px;
+    top:8px;
+    bottom:8px;
+    width:3px;
+    background:linear-gradient(to bottom, var(--morning), var(--midday), var(--afternoon), var(--evening));
+    border-radius:3px;
+  }
+
+  .item{
+    position:relative;
+    background:var(--card);
+    border-radius:18px;
+    padding:22px 24px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(46,58,52,.06);
+    border:1px solid var(--line);
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .45s ease forwards;
+  }
+  .item:nth-child(1){animation-delay:.03s;}
+  .item:nth-child(2){animation-delay:.09s;}
+  .item:nth-child(3){animation-delay:.15s;}
+  .item:nth-child(4){animation-delay:.21s;}
+  .item:nth-child(5){animation-delay:.27s;}
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+
+  .item::before{
+    content:"";
+    position:absolute;
+    left:-27px;
+    top:26px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    border:3px solid var(--card);
+    box-shadow:0 0 0 2px var(--dot,var(--ink));
+    background:var(--dot,var(--ink));
+  }
+  .item.morning{--dot:var(--morning);}
+  .item.midday{--dot:var(--midday);}
+  .item.afternoon{--dot:var(--afternoon);}
+  .item.evening{--dot:var(--evening);}
+
+  .item .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:.85rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--dot,var(--ink));
+    margin-bottom:6px;
+  }
+  .item .time{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:.95rem;
+    color:#8A8378;
+  }
+  .item h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:0 0 6px;
+  }
+  .item p{
+    margin:0;
+    font-size:1.12rem;
+    line-height:1.5;
+    color:#3E4A43;
+  }
+
+  footer{
+    text-align:center;
+    padding:24px;
+    color:#8A8378;
+    font-size:.9rem;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .item{animation:none; opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Nuestra Semana</h1>
+  <p>Comidas y actividades, día a día</p>
+</header>
+
+<nav class="day-arc" id="dayNav" aria-label="Seleccionar día"></nav>
+
+<main>
+  <div class="timeline" id="timeline"></div>
+</main>
+
+<footer>Toca un día para ver su horario completo</footer>
+
+<script>
+const data = {
+  "Lunes": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Café con leche o leche, tostada con aceite y fruta."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Taller de memoria y conversación."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Macarrones con chorizo, ensalada y fruta."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Bingo."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Crema de calabacín, tortilla francesa y yogur."}
+  ],
+  "Martes": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Leche con cacao, galletas y plátano."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Gimnasia suave."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Lentejas con verduras, merluza al horno y fruta."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Cine y coloquio."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Sopa de fideos, sándwich de pavo y yogur."}
+  ],
+  "Miércoles": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Café con leche, tostada con tomate y fruta."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Taller de prensa y actualidad."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Pollo guisado con patatas, ensalada y fruta."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Juegos de mesa."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Puré de verduras, croquetas y yogur."}
+  ],
+  "Jueves": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Leche o café, bizcocho casero y fruta."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Musicoterapia."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Arroz con pollo, ensalada y fruta."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Manualidades."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Sopa de verduras, pescado a la plancha y yogur."}
+  ],
+  "Viernes": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Café con leche, tostada con mermelada y fruta."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Lectura y recuerdos."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Judías verdes con patata, albóndigas en salsa y fruta."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Baile y canciones."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Crema de zanahoria, jamón cocido con queso y yogur."}
+  ],
+  "Sábado": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Leche, churros y fruta."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Paseo por el jardín."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Paella mixta, ensalada y fruta."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Concurso de preguntas."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Caldo, empanadillas al horno y yogur."}
+  ],
+  "Domingo": [
+    {slot:"morning", time:"9:00", label:"Desayuno", text:"Café con leche, tostada con mantequilla y fruta."},
+    {slot:"morning", time:"11:00", label:"Actividad de mañana", text:"Encuentro con familiares y tiempo libre."},
+    {slot:"midday", time:"13:30", label:"Comida", text:"Pollo asado con patatas, ensalada y flan."},
+    {slot:"afternoon", time:"17:00", label:"Actividad de tarde", text:"Música y merienda especial."},
+    {slot:"evening", time:"20:30", label:"Cena", text:"Crema de verduras, tortilla de patata y yogur."}
+  ]
+};
+
+const days = Object.keys(data);
+const nav = document.getElementById('dayNav');
+const timeline = document.getElementById('timeline');
+
+const todayIndex = (() => {
+  const jsDay = new Date().getDay(); // 0=Sun
+  return jsDay === 0 ? 6 : jsDay - 1;
+})();
+
+days.forEach((day, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'day-btn';
+  btn.textContent = day;
+  btn.setAttribute('data-day', day);
+  btn.addEventListener('click', () => selectDay(day, btn));
+  nav.appendChild(btn);
+});
+
+function selectDay(day, btnEl){
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  timeline.innerHTML = '';
+  data[day].forEach(entry => {
+    const div = document.createElement('div');
+    div.className = 'item ' + entry.slot;
+    div.innerHTML = `
+      <div class="eyebrow"><span>${entry.label}</span></div>
+      <div class="time">${entry.time}</div>
+      <h3>${entry.label}</h3>
+      <p>${entry.text}</p>
+    `;
+    timeline.appendChild(div);
+  });
+}
+
+// init with today
+const initialBtn = nav.querySelectorAll('.day-btn')[todayIndex];
+selectDay(days[todayIndex], initialBtn);
+</script>
+
+</body>
+</html>
