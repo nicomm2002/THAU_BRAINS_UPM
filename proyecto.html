@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071827">
+  <meta name="description" content="THAU: un proyecto de interacción conversacional y actividades con Reachy Mini para acompañar a personas mayores.">
+  <title>THAU · Conversar, recordar, jugar</title>
+  <style>
+    :root{color-scheme:dark;--bg:#071827;--panel:#0d2436;--panel2:#102c40;--ink:#f4f8fc;--muted:#a9bdca;--cyan:#7bdcf0;--mint:#b5ebd1;--line:rgba(184,218,233,.15);--gold:#ffd69a;--max:1160px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:radial-gradient(ellipse at 82% 8%,rgba(27,119,145,.18),transparent 35%),var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:5;background:rgba(7,24,39,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;letter-spacing:.04em}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(123,220,240,.6);border-radius:12px;color:var(--cyan);font-size:13px}
+    .brand small{display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.14em}
+    .navlinks{display:flex;gap:25px;align-items:center}
+    .navlinks a{font-size:13px;color:var(--muted);text-decoration:none}
+    .navlinks a:hover,.navlinks a:focus-visible{color:var(--cyan)}
+    .hero{padding:86px 0 78px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:12px;font-weight:750;letter-spacing:.15em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:24px;height:1px;background:var(--cyan)}
+    h1{font-size:clamp(42px,6vw,72px);line-height:1.04;letter-spacing:-.055em;margin:20px 0 22px;max-width:720px}
+    h1 em{font-style:normal;color:var(--cyan)}
+    .intro{font-size:19px;line-height:1.65;color:#c3d3dd;max-width:610px;margin:0 0 30px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 19px;border-radius:14px;text-decoration:none;font-weight:750;font-size:14px;border:1px solid var(--line)}
+    .button.primary{background:var(--cyan);color:#082132;border-color:var(--cyan)}
+    .button.secondary{color:var(--ink);background:rgba(255,255,255,.035)}
+    .button:hover{transform:translateY(-1px)}
+    .hero-art{min-height:390px;position:relative;display:grid;place-items:center}
+    .orbit{position:absolute;width:min(390px,90%);aspect-ratio:1;border:1px solid rgba(123,220,240,.2);border-radius:50%;box-shadow:0 0 0 34px rgba(123,220,240,.025),0 0 0 68px rgba(123,220,240,.018)}
+    .orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(123,220,240,.15);border-radius:50%;inset:12% -7%;transform:rotate(-27deg)}
+    .orbit:after{inset:23% -14%;transform:rotate(27deg)}
+    .robot-card{position:relative;width:280px;padding:28px 22px 20px;text-align:center;border:1px solid rgba(184,218,233,.22);border-radius:28px;background:linear-gradient(160deg,rgba(18,55,77,.95),rgba(9,30,47,.96));box-shadow:0 28px 80px rgba(0,0,0,.3)}
+    .robot-svg{width:172px;height:196px;display:block;margin:auto}
+    .robot-caption{margin-top:4px;font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+    .float-note{position:absolute;padding:11px 14px;background:#102b40;border:1px solid var(--line);border-radius:13px;color:#dceaf0;font-size:12px;box-shadow:0 12px 30px #06121d}
+    .float-note strong{color:var(--mint)}
+    .note-one{top:43px;left:3%}.note-two{right:0;bottom:50px}
+    .section{padding:77px 0;border-top:1px solid var(--line)}
+    .section-head{max-width:700px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.04em;margin:12px 0}
+    .section-head p{margin:0;color:var(--muted);font-size:16px}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .feature{padding:23px 21px 24px;min-height:220px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(16,44,64,.88),rgba(10,31,48,.8))}
+    .feature .num{font-size:12px;color:var(--cyan);font-weight:800;letter-spacing:.1em}
+    .feature h3{font-size:19px;margin:22px 0 9px;line-height:1.25}
+    .feature p{font-size:14px;color:var(--muted);margin:0}
+    .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:start}
+    .accent-panel{border:1px solid var(--line);border-radius:24px;padding:28px;background:var(--panel)}
+    .accent-panel h3{margin:0 0 7px;font-size:20px}.accent-panel p{margin:0;color:var(--muted);font-size:14px}
+    .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid rgba(123,220,240,.25);background:rgba(123,220,240,.07);color:#d8f5fb;font-size:12px}
+    .steps{display:grid;gap:0}
+    .step{display:grid;grid-template-columns:48px 1fr;gap:17px;padding:0 0 25px;position:relative}
+    .step:not(:last-child):after{content:"";position:absolute;left:23px;top:47px;bottom:0;width:1px;background:rgba(123,220,240,.3)}
+    .step-index{width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(123,220,240,.35);border-radius:15px;color:var(--cyan);font-weight:800;background:#0b2133}
+    .step h3{margin:1px 0 4px;font-size:17px}.step p{margin:0;color:var(--muted);font-size:14px}
+    .games{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .game{border-radius:20px;padding:23px;border:1px solid var(--line);background:var(--panel);min-height:166px}
+    .game .icon{font-size:24px}.game h3{margin:13px 0 5px;font-size:18px}.game p{margin:0;color:var(--muted);font-size:14px}
+    .closing{padding:56px;border-radius:28px;border:1px solid rgba(123,220,240,.27);background:linear-gradient(120deg,rgba(21,70,92,.76),rgba(14,40,59,.9));display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .closing h2{font-size:clamp(27px,3.5vw,38px);line-height:1.14;letter-spacing:-.04em;margin:0 0 10px}.closing p{margin:0;color:#c1d3dc;max-width:600px}
+    footer{padding:28px 0 36px;color:#8299a8;font-size:12px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:20px}
+    @media(max-width:900px){.hero-grid,.split{grid-template-columns:1fr}.hero{padding-top:62px}.hero-art{min-height:350px}.feature-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:580px){.wrap{width:min(100% - 30px,var(--max))}.nav{height:64px}.navlinks{gap:13px}.navlinks a{font-size:11px}.navlinks a:nth-child(2){display:none}.hero{padding:50px 0}.intro{font-size:17px}.hero-art{min-height:330px}.robot-card{width:240px}.robot-svg{height:174px}.note-one{left:0;top:20px}.note-two{right:0;bottom:20px}.feature-grid,.games{grid-template-columns:1fr}.feature{min-height:0}.section{padding:58px 0}.closing{padding:29px;display:block}.closing .button{margin-top:20px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="THAU, inicio"><span class="brand-mark">THAU</span><span>THAU<small>REACHY MINI</small></span></a>
+      <div class="navlinks"><a href="#proyecto">El proyecto</a><a href="#experiencia">La experiencia</a><a href="#actividades">Actividades</a></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-grid wrap">
+        <div>
+          <span class="eyebrow">Tecnología para conversar y compartir</span>
+          <h1>Conversar.<br><em>Recordar. Jugar.</em></h1>
+          <p class="intro">THAU une inteligencia artificial y el robot Reachy Mini para crear una experiencia cercana, accesible y entretenida para las personas mayores.</p>
+          <div class="hero-actions"><a class="button primary" href="#proyecto">Conoce el proyecto <span aria-hidden="true">&nbsp;↓</span></a><a class="button secondary" href="#actividades">Qué se puede hacer</a></div>
+        </div>
+        <div class="hero-art" aria-label="Ilustración estática de Reachy Mini">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="float-note note-one"><strong>Una voz familiar</strong><br>y una conversación a tu ritmo</div>
+          <div class="robot-card">
+            <svg class="robot-svg" viewBox="0 0 190 220" role="img" aria-labelledby="robot-title">
+              <title id="robot-title">Ilustración de un robot Reachy Mini</title>
+              <defs><linearGradient id="shell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#b9cbd4"/></linearGradient></defs>
+              <path d="M55 47 48 8m87 39 8-39" fill="none" stroke="#9fb7c3" stroke-width="4" stroke-linecap="round"/>
+              <path d="M45 52Q48 30 95 30t50 22l7 28q2 23-19 28H57Q36 104 38 81z" fill="url(#shell)" stroke="#d9e7ed" stroke-width="2"/>
+              <rect x="54" y="59" width="82" height="34" rx="17" fill="#122535"/>
+              <circle cx="78" cy="76" r="10" fill="#03080c"/><circle cx="112" cy="76" r="10" fill="#03080c"/>
+              <path d="M68 109Q95 101 122 109l25 24 8 51q2 18-17 20H52q-19-2-17-20l8-51z" fill="url(#shell)" stroke="#d9e7ed" stroke-width="2"/>
+              <path d="M39 161q55 19 112 0" fill="none" stroke="#a7bac3" stroke-width="2"/>
+              <ellipse cx="95" cy="205" rx="47" ry="8" fill="#06131d" opacity=".55"/>
+            </svg>
+            <div class="robot-caption">Reachy Mini · tecnología con presencia</div>
+          </div>
+          <div class="float-note note-two">Diseñado para <strong>participar</strong>,<br>no solo para escuchar</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proyecto">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">El proyecto</span><h2>Una experiencia conversacional pensada para las personas</h2><p>THAU permite hablar con un asistente, compartir recuerdos y elegir actividades. Reachy Mini aporta una presencia física y gestos que acompañan la interacción.</p></div>
+        <div class="feature-grid">
+          <article class="feature"><span class="num">01 · CONVERSACIÓN</span><h3>Hablar con naturalidad</h3><p>La persona puede expresarse por voz o texto y conversar sobre temas cotidianos, recuerdos, familia o rutinas.</p></article>
+          <article class="feature"><span class="num">02 · PERSONALIZACIÓN</span><h3>Una voz más cercana</h3><p>La configuración permite elegir voz, acento regional y estilo de respuesta para adaptar la experiencia.</p></article>
+          <article class="feature"><span class="num">03 · CONTEXTO</span><h3>Mantener el hilo</h3><p>THAU utiliza el contexto de la conversación para dar continuidad a los temas compartidos durante la sesión.</p></article>
+          <article class="feature"><span class="num">04 · PRESENCIA</span><h3>Interacción con Reachy</h3><p>El robot acompaña la conversación con expresiones y movimientos, en una experiencia con simulador o robot físico.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiencia">
+      <div class="wrap split">
+        <div>
+          <div class="section-head"><span class="eyebrow">Adaptada a cada persona</span><h2>La conversación se configura antes de empezar</h2><p>El operador prepara una sesión sencilla y deja las opciones listas para que el residente pueda centrarse en conversar.</p></div>
+          <div class="accent-panel"><h3>Variedades regionales disponibles</h3><p>La voz puede ajustarse a la variedad seleccionada para que el lenguaje resulte más familiar.</p><div class="chips" aria-label="Acentos disponibles"><span class="chip">Sevillano</span><span class="chip">Madrileño</span><span class="chip">Canario</span><span class="chip">Murciano</span><span class="chip">Gallego</span><span class="chip">Vasco</span><span class="chip">Catalán-valenciano</span></div></div>
+        </div>
+        <div class="steps" aria-label="Cómo transcurre una sesión">
+          <article class="step"><span class="step-index">1</span><div><h3>Preparar</h3><p>Se seleccionan las preferencias de voz, acento y conversación para la sesión.</p></div></article>
+          <article class="step"><span class="step-index">2</span><div><h3>Conversar</h3><p>La persona habla con Reachy; THAU reconoce el mensaje y responde con voz y texto.</p></div></article>
+          <article class="step"><span class="step-index">3</span><div><h3>Compartir una actividad</h3><p>La conversación puede dar paso a un juego, una charla sobre recuerdos o una actividad cotidiana.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="actividades">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Conversación y juego</span><h2>Hay muchas formas de participar</h2><p>Las actividades ofrecen un punto de partida para conversar, ejercitar la atención y disfrutar en compañía.</p></div>
+        <div class="games">
+          <article class="game"><span class="icon" aria-hidden="true">▦</span><h3>Sopa de letras</h3><p>Buscar palabras a partir de temas y pistas.</p></article>
+          <article class="game"><span class="icon" aria-hidden="true">▤</span><h3>Crucigrama</h3><p>Resolver definiciones y completar palabras paso a paso.</p></article>
+          <article class="game"><span class="icon" aria-hidden="true">◈</span><h3>Juego de memoria</h3><p>Observar, recordar y emparejar elementos.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap"><div class="closing"><div><h2>La tecnología también puede hacer compañía.</h2><p>THAU explora una forma accesible y expresiva de relacionarse con la inteligencia artificial a través de la conversación, el juego y Reachy Mini.</p></div><a class="button primary" href="#inicio">Volver al inicio ↑</a></div></div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>THAU · Proyecto de interacción con Reachy Mini</span><span>Página informativa · No conecta con la aplicación ni controla el robot</span></div></footer>
+</body>
+</html>
