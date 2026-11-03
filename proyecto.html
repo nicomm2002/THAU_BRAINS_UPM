@@ -37,12 +37,25 @@
     .orbit{position:absolute;width:min(390px,90%);aspect-ratio:1;border:1px solid rgba(123,220,240,.2);border-radius:50%;box-shadow:0 0 0 34px rgba(123,220,240,.025),0 0 0 68px rgba(123,220,240,.018)}
     .orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(123,220,240,.15);border-radius:50%;inset:12% -7%;transform:rotate(-27deg)}
     .orbit:after{inset:23% -14%;transform:rotate(27deg)}
-    .robot-card{position:relative;width:280px;padding:28px 22px 20px;text-align:center;border:1px solid rgba(184,218,233,.22);border-radius:28px;background:linear-gradient(160deg,rgba(18,55,77,.95),rgba(9,30,47,.96));box-shadow:0 28px 80px rgba(0,0,0,.3)}
+    .robot-card{position:relative;width:min(100%,320px);padding:28px 22px 20px;text-align:center;border:1px solid rgba(184,218,233,.22);border-radius:28px;background:linear-gradient(160deg,rgba(18,55,77,.95),rgba(9,30,47,.96));box-shadow:0 28px 80px rgba(0,0,0,.3)}
     .robot-svg{width:172px;height:196px;display:block;margin:auto}
     .robot-caption{margin-top:4px;font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-    .float-note{position:absolute;padding:11px 14px;background:#102b40;border:1px solid var(--line);border-radius:13px;color:#dceaf0;font-size:12px;box-shadow:0 12px 30px #06121d}
-    .float-note strong{color:var(--mint)}
-    .note-one{top:43px;left:3%}.note-two{right:0;bottom:50px}
+    .hero-highlights{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:16px}
+    .hero-highlight{padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(16,44,64,.8);font-size:11px;color:#dceaf0}
+    .partner-band{padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(13,36,54,.55)}
+    .partner-title{margin:0 0 17px;text-align:center;color:var(--muted);font-size:11px;font-weight:750;letter-spacing:.15em;text-transform:uppercase}
+    .partners{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;align-items:stretch}
+    .partner{min-height:105px;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 20px;border:1px solid var(--line);border-radius:16px;background:#f7fafc;color:#142d40;text-decoration:none}
+    .partner img{width:auto;max-width:45%;height:54px;object-fit:contain}
+    .partner:first-child img{max-width:58%;height:42px}
+    .partner span{font-size:12px;font-weight:750;line-height:1.3}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .about-card{padding:27px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(16,44,64,.88),rgba(10,31,48,.8))}
+    .about-card h3{margin:0 0 11px;font-size:21px}.about-card p{margin:0;color:var(--muted);font-size:14px}
+    .people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .people-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .person{padding:17px;border:1px solid var(--line);border-radius:16px;background:rgba(7,24,39,.55)}
+    .person strong{display:block;font-size:15px}.person span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
     .section{padding:77px 0;border-top:1px solid var(--line)}
     .section-head{max-width:700px;margin-bottom:34px}
     .section-head h2{font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.04em;margin:12px 0}
@@ -69,8 +82,8 @@
     .closing h2{font-size:clamp(27px,3.5vw,38px);line-height:1.14;letter-spacing:-.04em;margin:0 0 10px}.closing p{margin:0;color:#c1d3dc;max-width:600px}
     footer{padding:28px 0 36px;color:#8299a8;font-size:12px}
     .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:20px}
-    @media(max-width:900px){.hero-grid,.split{grid-template-columns:1fr}.hero{padding-top:62px}.hero-art{min-height:350px}.feature-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:580px){.wrap{width:min(100% - 30px,var(--max))}.nav{height:64px}.navlinks{gap:13px}.navlinks a{font-size:11px}.navlinks a:nth-child(2){display:none}.hero{padding:50px 0}.intro{font-size:17px}.hero-art{min-height:330px}.robot-card{width:240px}.robot-svg{height:174px}.note-one{left:0;top:20px}.note-two{right:0;bottom:20px}.feature-grid,.games{grid-template-columns:1fr}.feature{min-height:0}.section{padding:58px 0}.closing{padding:29px;display:block}.closing .button{margin-top:20px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}}
+    @media(max-width:900px){.hero-grid,.split{grid-template-columns:1fr}.hero{padding-top:62px}.hero-art{min-height:350px}.feature-grid{grid-template-columns:repeat(2,1fr)}.partners{grid-template-columns:1fr 1fr}.partner:first-child{grid-column:1/-1}}
+    @media(max-width:580px){.wrap{width:min(100% - 30px,var(--max))}.nav{height:64px}.navlinks{gap:13px}.navlinks a{font-size:11px}.navlinks a:nth-child(2){display:none}.hero{padding:50px 0}.intro{font-size:17px}.hero-art{min-height:0;margin-top:26px}.robot-card{width:min(100%,270px)}.robot-svg{height:174px}.orbit{width:78%}.feature-grid,.games,.about-grid,.people-grid{grid-template-columns:1fr}.partners{grid-template-columns:1fr}.partner:first-child{grid-column:auto}.partner{min-height:88px}.feature{min-height:0}.section{padding:58px 0}.closing{padding:29px;display:block}.closing .button{margin-top:20px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
 </head>
@@ -78,7 +91,7 @@
   <header class="topbar">
     <nav class="nav wrap" aria-label="Navegación principal">
       <a class="brand" href="#inicio" aria-label="THAU, inicio"><span class="brand-mark">THAU</span><span>THAU<small>REACHY MINI</small></span></a>
-      <div class="navlinks"><a href="#proyecto">El proyecto</a><a href="#experiencia">La experiencia</a><a href="#actividades">Actividades</a></div>
+      <div class="navlinks"><a href="#proyecto">El proyecto</a><a href="#equipo">Quiénes somos</a><a href="#actividades">Actividades</a></div>
     </nav>
   </header>
 
@@ -93,7 +106,6 @@
         </div>
         <div class="hero-art" aria-label="Ilustración estática de Reachy Mini">
           <div class="orbit" aria-hidden="true"></div>
-          <div class="float-note note-one"><strong>Una voz familiar</strong><br>y una conversación a tu ritmo</div>
           <div class="robot-card">
             <svg class="robot-svg" viewBox="0 0 190 220" role="img" aria-labelledby="robot-title">
               <title id="robot-title">Ilustración de un robot Reachy Mini</title>
@@ -108,9 +120,17 @@
             </svg>
             <div class="robot-caption">Reachy Mini · tecnología con presencia</div>
           </div>
-          <div class="float-note note-two">Diseñado para <strong>participar</strong>,<br>no solo para escuchar</div>
+          <div class="hero-highlights" aria-label="Pilares de THAU"><span class="hero-highlight">Conversación cercana</span><span class="hero-highlight">Actividades accesibles</span><span class="hero-highlight">Robótica social</span></div>
         </div>
       </div>
+    </section>
+
+    <section class="partner-band" aria-label="Instituciones y proyecto">
+      <div class="wrap"><p class="partner-title">Un proyecto de investigación y desarrollo</p><div class="partners">
+        <div class="partner"><img src="assets/thau-logo.png" alt="Logotipo THAU"><span>THAU<br>Habla y aprendizaje automático</span></div>
+        <a class="partner" href="https://www.upm.es/" target="_blank" rel="noopener noreferrer"><img src="assets/upm-logo.png" alt="Logotipo de la Universidad Politécnica de Madrid"><span>Universidad Politécnica<br>de Madrid · UPM</span></a>
+        <a class="partner" href="https://iptc.upm.es/" target="_blank" rel="noopener noreferrer"><img src="assets/iptc-logo.png" alt="Logotipo del Information Processing and Telecommunications Center"><span>Information Processing and<br>Telecommunications Center · IPTC</span></a>
+      </div></div>
     </section>
 
     <section class="section" id="proyecto">
@@ -122,6 +142,24 @@
           <article class="feature"><span class="num">03 · CONTEXTO</span><h3>Mantener el hilo</h3><p>THAU utiliza el contexto de la conversación para dar continuidad a los temas compartidos durante la sesión.</p></article>
           <article class="feature"><span class="num">04 · PRESENCIA</span><h3>Interacción con Reachy</h3><p>El robot acompaña la conversación con expresiones y movimientos, en una experiencia con simulador o robot físico.</p></article>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="equipo">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Quiénes somos</span><h2>Personas e investigación detrás de THAU</h2><p>THAU explora cómo combinar tecnologías del habla, inteligencia artificial conversacional y robótica social para crear interacciones accesibles, personalizables y con sentido para las personas mayores.</p></div>
+        <div class="about-grid">
+          <article class="about-card"><h3>Un trabajo interdisciplinar</h3><p>El proyecto reúne investigación en tecnología del habla y aprendizaje automático con diseño de interacción y actividades conversacionales. La experiencia se plantea para conversar, compartir recuerdos y participar a un ritmo cómodo.</p></article>
+          <article class="about-card"><h3>Supervisión</h3><p>El desarrollo cuenta con la supervisión de:</p><div class="people-grid two">
+            <div class="person"><strong>Luis Fernando D’Haro</strong><span>Supervisor</span></div>
+            <div class="person"><strong>Ricardo de Córdoba</strong><span>Supervisor</span></div>
+          </div></article>
+        </div>
+        <article class="about-card" style="margin-top:16px"><h3>Desarrollo</h3><p>Equipo de desarrollo de la experiencia THAU:</p><div class="people-grid">
+          <div class="person"><strong>Nicolás Martínez</strong><span>Desarrollo</span></div>
+          <div class="person"><strong>David Aragón</strong><span>Desarrollo</span></div>
+          <div class="person"><strong>Savvas Kakalis Lampropoulou</strong><span>Desarrollo</span></div>
+        </div></article>
       </div>
     </section>
 
@@ -155,6 +193,6 @@
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><span>THAU · Proyecto de interacción con Reachy Mini</span><span>Página informativa · No conecta con la aplicación ni controla el robot</span></div></footer>
+  <footer><div class="wrap footer-inner"><span>THAU · Universidad Politécnica de Madrid · IPTC</span><span>Página informativa · No conecta con la aplicación ni controla el robot</span></div></footer>
 </body>
 </html>
