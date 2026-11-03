@@ -56,6 +56,51 @@
     .people-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
     .person{padding:17px;border:1px solid var(--line);border-radius:16px;background:rgba(7,24,39,.55)}
     .person strong{display:block;font-size:15px}.person span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+    .orbit{animation:orbit-drift 48s linear infinite}
+    @keyframes orbit-drift{to{transform:rotate(360deg)}}
+    .showcase{display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;align-items:center}
+    .showcase-copy h2,.voice-copy h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.045em;margin:12px 0}
+    .showcase-copy p,.voice-copy p{color:var(--muted);font-size:15px}
+    .demo-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.demo-tags span{font-size:11px;color:#c9e4ec;border:1px solid var(--line);border-radius:99px;padding:7px 10px;background:rgba(255,255,255,.025)}
+    .demo-window{overflow:hidden;border:1px solid rgba(123,220,240,.25);border-radius:22px;background:#071725;box-shadow:0 26px 80px rgba(0,0,0,.32)}
+    .demo-top{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid var(--line);background:#0b2030;color:#9eb4c3;font-size:11px}
+    .demo-dots{display:flex;gap:5px}.demo-dots i{width:7px;height:7px;border-radius:50%;background:#547184}.demo-dots i:first-child{background:#fb8c74}.demo-dots i:nth-child(2){background:#f4ca73}.demo-dots i:last-child{background:#75dcb8}
+    .demo-tabs{display:flex;gap:7px;padding:13px 15px 0;overflow-x:auto}
+    .demo-tab{flex:1;min-width:96px;border:1px solid var(--line);border-radius:10px 10px 0 0;background:transparent;color:#9fb5c4;padding:10px 12px;font:inherit;font-size:12px;font-weight:750;cursor:pointer}
+    .demo-tab[aria-selected="true"]{color:#071827;background:var(--cyan);border-color:var(--cyan)}
+    .demo-screen{min-height:310px;margin:0 14px 14px;padding:22px;border:1px solid rgba(123,220,240,.25);border-radius:0 14px 14px 14px;background:radial-gradient(ellipse at 70% 10%,rgba(70,166,193,.13),transparent 50%),#0b1e2d}
+    .screen-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.screen-title strong{font-size:15px}.screen-title span{color:#94aebe;font-size:11px}
+    .word-layout{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+    .letter-grid{display:grid;grid-template-columns:repeat(6,minmax(32px,1fr));gap:5px;max-width:340px}
+    .letter-cell{aspect-ratio:1;border:1px solid rgba(166,207,221,.18);border-radius:8px;background:#132d40;color:#eaf7fb;font-size:16px;font-weight:800;cursor:pointer;transition:transform .16s,background .16s,border-color .16s}
+    .letter-cell:hover{transform:translateY(-2px);border-color:var(--cyan)}.letter-cell.selected,.letter-cell.found{background:#80dcb9;color:#08251f;border-color:#80dcb9}
+    .word-target{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);min-width:130px}.word-target small{display:block;color:#91a9b8;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.word-target strong{display:block;margin-top:4px;font-size:19px;letter-spacing:.17em}
+    .mini-button{border:0;border-radius:11px;padding:10px 13px;margin-top:12px;background:var(--cyan);color:#082132;font:inherit;font-size:12px;font-weight:800;cursor:pointer}.mini-button:hover{filter:brightness(1.06)}
+    .demo-status{min-height:22px;margin:12px 0 0;color:var(--mint);font-size:12px}
+    .crossword-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+    .crossword-board{display:grid;grid-template-columns:repeat(5,42px);grid-template-rows:repeat(5,42px);gap:3px;justify-content:center}
+    .cross-cell{display:grid;place-items:center;border-radius:5px;background:#e6f0f4;color:#243948;font-size:10px;font-weight:850}.cross-cell.empty{background:transparent}.cross-cell.active{background:#93e1c1}
+    .clue-card{padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035)}.clue-card small{color:#99b1bf;text-transform:uppercase;letter-spacing:.12em;font-size:10px}.clue-card p{margin:8px 0;color:#e6f2f6;font-size:14px;font-weight:700}
+    .answer-row{display:flex;gap:7px}.answer-row input{min-width:0;width:100%;border:1px solid var(--line);border-radius:9px;background:#071725;color:white;padding:9px 10px;font:inherit;font-size:13px}
+    .memory-board{display:grid;grid-template-columns:repeat(4,minmax(54px,74px));gap:9px;justify-content:center;margin:25px auto 0}
+    .memory-card{aspect-ratio:1;border:1px solid rgba(123,220,240,.25);border-radius:13px;background:linear-gradient(145deg,#17394c,#0d2638);color:transparent;font-size:25px;cursor:pointer;transition:transform .18s,background .18s}
+    .memory-card:hover{transform:translateY(-2px)}.memory-card.open,.memory-card.matched{background:#e5f4f4;color:#132d40}.memory-card.matched{outline:2px solid #80dcb9}
+    .demo-caption{display:flex;justify-content:space-between;gap:12px;margin:0 15px 14px;color:#839baa;font-size:10px}
+    .voice-section{background:linear-gradient(180deg,transparent,rgba(13,36,54,.72),transparent)}
+    .voice-layout{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+    .voice-card{padding:24px;border:1px solid rgba(123,220,240,.24);border-radius:24px;background:linear-gradient(145deg,#102b40,#0a1d2c);box-shadow:0 20px 65px rgba(0,0,0,.24)}
+    .voice-label{color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .voice-text{font-size:18px;line-height:1.5;margin:15px 0 20px;color:#f0f7fa}
+    .voice-controls{display:flex;align-items:center;gap:13px}
+    .play-voice{width:48px;height:48px;border:0;border-radius:50%;background:var(--cyan);color:#082132;font-size:18px;cursor:pointer;box-shadow:0 0 0 6px rgba(123,220,240,.1)}
+    .play-voice:focus-visible,.demo-tab:focus-visible,.mini-button:focus-visible,.letter-cell:focus-visible,.memory-card:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    .voice-wave{height:48px;flex:1;display:flex;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+    .voice-wave i{width:4px;height:9px;border-radius:9px;background:#63c9dd;opacity:.55}
+    .voice-card.playing .voice-wave i{animation:wave .7s ease-in-out infinite alternate;opacity:1}
+    .voice-wave i:nth-child(3n){animation-delay:.14s}.voice-wave i:nth-child(4n){animation-delay:.28s}.voice-wave i:nth-child(5n){animation-delay:.4s}
+    @keyframes wave{to{height:36px}}
+    .voice-note{font-size:11px!important;color:#8fa6b4!important;margin:15px 0 0!important}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
     .section{padding:77px 0;border-top:1px solid var(--line)}
     .section-head{max-width:700px;margin-bottom:34px}
     .section-head h2{font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.04em;margin:12px 0}
@@ -82,16 +127,16 @@
     .closing h2{font-size:clamp(27px,3.5vw,38px);line-height:1.14;letter-spacing:-.04em;margin:0 0 10px}.closing p{margin:0;color:#c1d3dc;max-width:600px}
     footer{padding:28px 0 36px;color:#8299a8;font-size:12px}
     .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:20px}
-    @media(max-width:900px){.hero-grid,.split{grid-template-columns:1fr}.hero{padding-top:62px}.hero-art{min-height:350px}.feature-grid{grid-template-columns:repeat(2,1fr)}.partners{grid-template-columns:1fr 1fr}.partner:first-child{grid-column:1/-1}}
-    @media(max-width:580px){.wrap{width:min(100% - 30px,var(--max))}.nav{height:64px}.navlinks{gap:13px}.navlinks a{font-size:11px}.navlinks a:nth-child(2){display:none}.hero{padding:50px 0}.intro{font-size:17px}.hero-art{min-height:0;margin-top:26px}.robot-card{width:min(100%,270px)}.robot-svg{height:174px}.orbit{width:78%}.feature-grid,.games,.about-grid,.people-grid{grid-template-columns:1fr}.partners{grid-template-columns:1fr}.partner:first-child{grid-column:auto}.partner{min-height:88px}.feature{min-height:0}.section{padding:58px 0}.closing{padding:29px;display:block}.closing .button{margin-top:20px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+    @media(max-width:900px){.hero-grid,.split{grid-template-columns:1fr}.hero{padding-top:62px}.hero-art{min-height:350px}.feature-grid{grid-template-columns:repeat(2,1fr)}.partners{grid-template-columns:1fr 1fr}.partner:first-child{grid-column:1/-1}.showcase{grid-template-columns:1fr}.voice-layout{grid-template-columns:1fr}}
+    @media(max-width:580px){.wrap{width:min(100% - 30px,var(--max))}.nav{height:64px}.navlinks{gap:13px}.navlinks a{font-size:11px}.navlinks a:nth-child(2){display:none}.hero{padding:50px 0}.intro{font-size:17px}.hero-art{min-height:0;margin-top:26px}.robot-card{width:min(100%,270px)}.robot-svg{height:174px}.orbit{width:78%}.feature-grid,.games,.about-grid,.people-grid{grid-template-columns:1fr}.partners{grid-template-columns:1fr}.partner:first-child{grid-column:auto}.partner{min-height:88px}.feature{min-height:0}.section{padding:58px 0}.closing{padding:29px;display:block}.closing .button{margin-top:20px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}.demo-screen{padding:14px 10px;min-height:300px;margin-inline:8px}.demo-tabs{padding-inline:8px}.demo-tab{min-width:84px;padding:9px 7px;font-size:11px}.word-layout{grid-template-columns:1fr;gap:12px}.letter-grid{margin:auto;width:100%}.word-target{display:flex;justify-content:space-between;align-items:center}.word-target strong{margin:0}.crossword-layout{grid-template-columns:1fr}.crossword-board{grid-template-columns:repeat(5,36px);grid-template-rows:repeat(5,36px)}.demo-caption{margin-inline:9px}.voice-card{padding:19px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav wrap" aria-label="Navegación principal">
       <a class="brand" href="#inicio" aria-label="THAU, inicio"><span class="brand-mark">THAU</span><span>THAU<small>REACHY MINI</small></span></a>
-      <div class="navlinks"><a href="#proyecto">El proyecto</a><a href="#equipo">Quiénes somos</a><a href="#actividades">Actividades</a></div>
+      <div class="navlinks"><a href="#proyecto">El proyecto</a><a href="#equipo">Quiénes somos</a><a href="#explora">Explora THAU</a></div>
     </nav>
   </header>
 
@@ -177,9 +222,43 @@
       </div>
     </section>
 
+    <section class="section" id="explora">
+      <div class="wrap showcase">
+        <div class="showcase-copy"><span class="eyebrow">Una probadita de THAU</span><h2>Jugar también abre conversación.</h2><p>Explora tres pequeñas muestras interactivas inspiradas en las actividades de THAU. No guardan datos ni se conectan a la aplicación: son una ventana para descubrir cómo se siente participar.</p><div class="demo-tags"><span>Sin registro</span><span>Se puede probar aquí</span><span>Diseñado para conversar</span></div></div>
+        <div class="demo-window" aria-label="Muestra interactiva de juegos THAU">
+          <div class="demo-top"><span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>THAU · ACTIVIDADES</span><span>EXPLORA</span></div>
+          <div class="demo-tabs" role="tablist" aria-label="Elige una actividad">
+            <button class="demo-tab" role="tab" aria-selected="true" aria-controls="demo-sopa" id="tab-sopa" data-demo="sopa">Sopa</button>
+            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-cruci" id="tab-cruci" data-demo="cruci">Crucigrama</button>
+            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-memoria" id="tab-memoria" data-demo="memoria">Memoria</button>
+          </div>
+          <div class="demo-screen" id="demo-sopa" role="tabpanel" aria-labelledby="tab-sopa">
+            <div class="screen-title"><strong>Encuentra una palabra</strong><span>1 de 3</span></div>
+            <div class="word-layout"><div class="letter-grid" id="letter-grid" aria-label="Cuadrícula de letras"></div><div class="word-target"><div><small>Busca</small><strong>CASA</strong></div><button class="mini-button" id="reset-word" type="button">Reiniciar</button></div></div>
+            <p class="demo-status" id="word-status" aria-live="polite">Toca las cuatro letras que forman CASA.</p>
+          </div>
+          <div class="demo-screen" id="demo-cruci" role="tabpanel" aria-labelledby="tab-cruci" hidden>
+            <div class="screen-title"><strong>Una pista, una palabra</strong><span>Horizontal · 4 letras</span></div>
+            <div class="crossword-layout"><div class="crossword-board" aria-label="Vista previa de crucigrama"></div><div class="clue-card"><small>La pista</small><p>Lugar donde nos sentimos en casa.</p><div class="answer-row"><input id="cross-answer" maxlength="8" placeholder="Tu respuesta" aria-label="Escribe tu respuesta"><button class="mini-button" id="check-cross" type="button">Probar</button></div><p class="demo-status" id="cross-status" aria-live="polite">¿Qué palabra te viene a la cabeza?</p></div></div>
+          </div>
+          <div class="demo-screen" id="demo-memoria" role="tabpanel" aria-labelledby="tab-memoria" hidden>
+            <div class="screen-title"><strong>Recuerda las parejas</strong><span id="memory-score">0 de 3 parejas</span></div><div class="memory-board" id="memory-board" aria-label="Tablero de memoria"></div><div class="demo-status" id="memory-status" aria-live="polite">Descubre dos cartas para empezar.</div><button class="mini-button" id="reset-memory" type="button">Mezclar de nuevo</button>
+          </div>
+          <div class="demo-caption"><span>Pequeñas muestras, sin conexión al sistema</span><span>THAU · UPM</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section voice-section" id="voz">
+      <div class="wrap voice-layout">
+        <div class="voice-copy"><span class="eyebrow">Escucha a Reachy</span><h2>Una voz que acompaña la actividad.</h2><p>Esta muestra contiene una instrucción de juego pronunciada por Reachy. Pulsa reproducir para escuchar la voz del robot.</p><p class="voice-note">Fragmento de audio generado por THAU. Incluye solo la voz de Reachy; no contiene grabación del participante.</p></div>
+        <div class="voice-card" id="voice-card"><span class="voice-label">Reachy · instrucciones de crucigrama</span><p class="voice-text">«Tienes cinco palabras. Puedes decirme el número y la solución»</p><div class="voice-controls"><button class="play-voice" id="play-voice" type="button" aria-label="Reproducir audio de Reachy">▶</button><div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="voice-time" style="font-variant-numeric:tabular-nums;color:#91a9b8;font-size:11px">00:00</span></div><audio id="reachy-audio" preload="metadata"><source src="assets/reachy-juego-demo.mp3" type="audio/mpeg"></audio></div>
+      </div>
+    </section>
+
     <section class="section" id="actividades">
       <div class="wrap">
-        <div class="section-head"><span class="eyebrow">Conversación y juego</span><h2>Hay muchas formas de participar</h2><p>Las actividades ofrecen un punto de partida para conversar, ejercitar la atención y disfrutar en compañía.</p></div>
+        <div class="section-head"><span class="eyebrow">Más actividades</span><h2>Conversación y juego, a tu ritmo</h2><p>Las propuestas ofrecen un punto de partida para compartir recuerdos, ejercitar la atención y disfrutar en compañía.</p></div>
         <div class="games">
           <article class="game"><span class="icon" aria-hidden="true">▦</span><h3>Sopa de letras</h3><p>Buscar palabras a partir de temas y pistas.</p></article>
           <article class="game"><span class="icon" aria-hidden="true">▤</span><h3>Crucigrama</h3><p>Resolver definiciones y completar palabras paso a paso.</p></article>
@@ -194,5 +273,53 @@
   </main>
 
   <footer><div class="wrap footer-inner"><span>THAU · Universidad Politécnica de Madrid · IPTC</span><span>Página informativa · No conecta con la aplicación ni controla el robot</span></div></footer>
+
+  <script>
+    (() => {
+      const sopa = document.getElementById('letter-grid');
+      const wordStatus = document.getElementById('word-status');
+      const target = [7, 8, 9, 10];
+      const letters = 'MARIPOLCASATT ERUNAPOMES AARBOLE'.replace(/\s/g, '');
+      const renderSopa = () => {
+        sopa.replaceChildren();
+        [...letters].forEach((letter, i) => {
+          const cell = document.createElement('button'); cell.type = 'button'; cell.className = 'letter-cell'; cell.textContent = letter; cell.dataset.index = i; cell.setAttribute('aria-label', `Letra ${letter}, casilla ${i + 1}`);
+          cell.addEventListener('click', () => {
+            if (cell.classList.contains('found')) return;
+            cell.classList.toggle('selected');
+            const chosen = [...sopa.querySelectorAll('.selected')].map(x => Number(x.dataset.index));
+            if (chosen.length === 4) {
+              if (target.every(n => chosen.includes(n))) { chosen.forEach(n => sopa.querySelector(`[data-index="${n}"]`).classList.add('found')); sopa.querySelectorAll('.selected').forEach(x => x.classList.remove('selected')); wordStatus.textContent = '¡Muy bien! Has encontrado CASA.'; }
+              else { wordStatus.textContent = 'Casi. Prueba seleccionando C-A-S-A en orden.'; sopa.querySelectorAll('.selected').forEach(x => x.classList.remove('selected')); }
+            }
+          }); sopa.append(cell);
+        });
+      };
+      renderSopa();
+      document.getElementById('reset-word').addEventListener('click', () => { renderSopa(); wordStatus.textContent = 'Toca las cuatro letras que forman CASA.'; });
+      document.querySelectorAll('.demo-tab').forEach(tab => tab.addEventListener('click', () => {
+        document.querySelectorAll('.demo-tab').forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+        document.querySelectorAll('[role="tabpanel"]').forEach(panel => panel.hidden = panel.id !== `demo-${tab.dataset.demo}`);
+      }));
+      const board = document.querySelector('.crossword-board');
+      const crossword = ['.....','.###.','.###.','.###.','.....'];
+      crossword.join('').split('').forEach((cell, i) => { const square = document.createElement('span'); square.className = cell === '#' ? 'cross-cell empty' : 'cross-cell'; if (i === 0 || i === 20) square.textContent = '1'; board.append(square); });
+      document.getElementById('check-cross').addEventListener('click', () => {
+        const value = document.getElementById('cross-answer').value.trim().toLocaleUpperCase('es'); const status = document.getElementById('cross-status');
+        if (value === 'CASA') { status.textContent = '¡Exacto! La respuesta es CASA.'; board.querySelectorAll('.cross-cell:not(.empty)').forEach(c => c.classList.add('active')); }
+        else status.textContent = value ? 'No es esa. ¿Quieres probar otra palabra?' : 'Escribe una palabra para probar.';
+      });
+      const memory = document.getElementById('memory-board'); let first = null, locked = false, matched = 0, timer = null;
+      function resetMemory() { clearTimeout(timer); memory.replaceChildren(); first = null; locked = false; matched = 0; document.getElementById('memory-score').textContent = '0 de 3 parejas'; document.getElementById('memory-status').textContent = 'Descubre dos cartas para empezar.'; ['🌷','🌷','📚','📚','☀️','☀️'].sort(() => Math.random() - .5).forEach((symbol, index) => { const card = document.createElement('button'); card.type = 'button'; card.className = 'memory-card'; card.textContent = symbol; card.dataset.symbol = symbol; card.setAttribute('aria-label', `Carta ${index + 1}, oculta`); card.addEventListener('click', () => { if (locked || card.classList.contains('open') || card.classList.contains('matched')) return; card.classList.add('open'); card.setAttribute('aria-label', `Carta ${index + 1}, ${symbol}`); if (!first) { first = card; return; } if (first.dataset.symbol === symbol) { first.classList.add('matched'); card.classList.add('matched'); first = null; matched++; document.getElementById('memory-score').textContent = `${matched} de 3 parejas`; document.getElementById('memory-status').textContent = matched === 3 ? '¡Has encontrado todas las parejas!' : '¡Pareja encontrada! Busca otra.'; } else { locked = true; const prev = first; first = null; document.getElementById('memory-status').textContent = 'No coinciden. ¡Recuerda dónde están!'; timer = setTimeout(() => { prev.classList.remove('open'); card.classList.remove('open'); locked = false; }, 750); } }); memory.append(card); }); }
+      document.getElementById('reset-memory').addEventListener('click', resetMemory); resetMemory();
+      const audio = document.getElementById('reachy-audio'); const play = document.getElementById('play-voice'); const card = document.getElementById('voice-card'); const time = document.getElementById('voice-time');
+      play.addEventListener('click', () => { if (audio.paused) audio.play().catch(() => {}); else audio.pause(); });
+      audio.addEventListener('play', () => { card.classList.add('playing'); play.textContent = 'Ⅱ'; play.setAttribute('aria-label', 'Pausar audio de Reachy'); });
+      audio.addEventListener('pause', () => { card.classList.remove('playing'); play.textContent = '▶'; play.setAttribute('aria-label', 'Reproducir audio de Reachy'); });
+      audio.addEventListener('ended', () => { card.classList.remove('playing'); play.textContent = '▶'; play.setAttribute('aria-label', 'Reproducir audio de Reachy'); });
+      audio.addEventListener('timeupdate', () => { const n = Math.floor(audio.currentTime || 0); time.textContent = `${String(Math.floor(n / 60)).padStart(2,'0')}:${String(n % 60).padStart(2,'0')}`; });
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .12 }); document.querySelectorAll('.feature,.about-card,.step,.game,.showcase-copy,.demo-window,.voice-copy,.voice-card').forEach(el => { el.classList.add('reveal'); observer.observe(el); }); }
+    })();
+  </script>
 </body>
 </html>
